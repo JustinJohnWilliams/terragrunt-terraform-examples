@@ -8,7 +8,7 @@ variable "name" {
 }
 
 variable "env" {
-  description = "Concord Environment"
+  description = "Environment Name"
   type        = string
 }
 

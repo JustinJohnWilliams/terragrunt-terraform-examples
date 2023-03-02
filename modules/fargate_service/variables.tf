@@ -18,15 +18,13 @@ variable "container_port" {
 }
 
 variable "container_cpu" {
-  description = "Number of cpu units used by the task"
+  description = "The number of cpu units used by the task. See https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html for combinations"
   default     = 1024
-  type        = number
 }
 
 variable "container_memory" {
-  description = "Amount (in MiB) of memory used by the task"
+  description = "The Amount (in MiB) of memory used by the task. See https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html for combinations"
   default     = 2048
-  type        = number
 }
 
 variable "public_subnets" {
@@ -65,13 +63,23 @@ variable "aws_account_id" {
 }
 
 variable "env" {
-  description = "Concord Environment"
+  description = "Environment Name"
 }
 
 variable "default_tags" {
   description = "Default tags should be passed in from root terragrunt module (e.g. env, account, region, etc)"
   type        = map(any)
 }
+
+variable "iam_policies" {
+  description = "Map of the IAM Permissions the Fargate Tasks will need to access"
+  type = map(object({
+    Actions   = list(string),
+    Effect    = string,
+    Resources = list(string)
+  }))
+}
+
 
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS

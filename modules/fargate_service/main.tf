@@ -19,8 +19,7 @@ module "security_groups" {
   vpc_id         = var.vpc_id
   env            = var.env
   container_port = var.container_port
-
-  tags = local.tags
+  tags           = local.tags
 }
 
 module "alb" {
@@ -32,8 +31,7 @@ module "alb" {
   subnets             = var.public_subnets
   alb_security_groups = [module.security_groups.alb]
   health_check_path   = var.health_check_path
-
-  tags = local.tags
+  tags                = local.tags
 }
 
 module "ecr" {
@@ -42,9 +40,17 @@ module "ecr" {
   name       = var.name
   env        = var.env
   max_images = var.ecr_max_images
-
-  tags = local.tags
+  tags       = local.tags
 }
+
+module "iam_role" {
+  source = "./iam"
+
+  name         = var.name
+  iam_policies = var.iam_policies
+  tags         = var.tags
+}
+
 
 module "ecs" {
   source = "./ecs"
@@ -59,6 +65,7 @@ module "ecs" {
   ecs_service_security_groups = [module.security_groups.ecs_tasks]
   subnets                     = var.private_subnets
   alb_target_group_arn        = module.alb.aws_alb_target_group_arn
-
-  tags = local.tags
+  execution_role_arn          = module.iam_role.ecs_task_execution_role_arn
+  task_role_arn               = module.iam_role.ecs_task_role_arn
+  tags                        = local.tags
 }

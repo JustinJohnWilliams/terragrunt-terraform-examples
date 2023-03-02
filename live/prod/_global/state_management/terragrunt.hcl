@@ -24,8 +24,8 @@ inputs = {
   aws_account_id = local.aws_account_id
   env            = local.env
 
-  bucket_name   = "<MY DEV STATE BUCKET NAME>"
-  table_name    = "<MY DEV STATE DYNAMO DB TABLE>"
+  bucket_name   = "<MY PROD STATE BUCKET NAME>"
+  table_name    = "<MY PROD STATE DYNAMO DB TABLE>"
   hash_key      = "LockID"
   hash_key_type = "S"
   billing_mode  = "PAY_PER_REQUEST"

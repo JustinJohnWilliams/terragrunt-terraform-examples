@@ -8,7 +8,7 @@ variable "name" {
 }
 
 variable "env" {
-  description = "Concord Environment"
+  description = "Environment Name"
   type        = string
 }
 
@@ -57,6 +57,16 @@ variable "subnets" {
 
 variable "alb_target_group_arn" {
   description = "The ALB Target Group"
+  type        = string
+}
+
+variable "execution_role_arn" {
+  description = "The IAM Role Arn for the ECS Task Execution Role"
+  type        = string
+}
+
+variable "task_role_arn" {
+  description = "The IAM Role Arn for the Task itself. (Note: This should be specific to the service)"
   type        = string
 }
 

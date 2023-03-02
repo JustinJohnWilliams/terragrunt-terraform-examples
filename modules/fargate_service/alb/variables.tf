@@ -13,7 +13,7 @@ variable "vpc_id" {
 }
 
 variable "env" {
-  description = "Concord Environment"
+  description = "Environment Name"
   type        = string
 }
 

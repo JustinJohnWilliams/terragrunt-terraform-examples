@@ -3,25 +3,36 @@
 # You must provide a value for each of these parameters, they should be provided by the parent terragrunt config
 # ---------------------------------------------------------------------------------------------------------------------
 variable "name" {
-  description = "The name of your stack"
+  description = "The name of your Event Bridge schedule"
   type        = string
 }
 
-variable "vpc_id" {
-  description = "The VPC in which to deploy the service"
+variable "description" {
+  type = string
+}
+
+variable "schedule" {
+  description = "The cron expression for the schedule"
   type        = string
 }
 
-variable "env" {
-  description = "Environment Name"
-  type        = string
+variable "lambda_arn" {
+  type = string
 }
 
-variable "container_port" {
-  description = "The port where the Docker is exposed"
-  type        = number
+variable "lambda_name" {
+  type = string
 }
 
 variable "tags" {
   type = map(any)
+}
+
+variable "event_input" {
+  description = "The JSON input for the cloudwatch event to send"
+  type        = string
+}
+
+variable "enabled" {
+  type = bool
 }

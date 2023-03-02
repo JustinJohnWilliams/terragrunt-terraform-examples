@@ -3,23 +3,21 @@
 # You must provide a value for each of these parameters, they should be provided by the parent terragrunt config
 # ---------------------------------------------------------------------------------------------------------------------
 variable "name" {
-  description = "The name of your stack"
+  description = "The name of the ECS Service"
   type        = string
 }
 
-variable "vpc_id" {
-  description = "The VPC in which to deploy the service"
-  type        = string
+variable "custom_actions" {
+  type    = list(string)
+  default = []
 }
 
-variable "env" {
-  description = "Environment Name"
-  type        = string
-}
-
-variable "container_port" {
-  description = "The port where the Docker is exposed"
-  type        = number
+variable "iam_policies" {
+  type = map(object({
+    Actions   = list(string),
+    Effect    = string,
+    Resources = list(string)
+  }))
 }
 
 variable "tags" {

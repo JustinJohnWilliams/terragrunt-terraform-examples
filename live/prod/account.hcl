@@ -2,7 +2,7 @@
 # terragrunt.hcl configuration.
 
 locals {
-  account_name   = "<MY DEV AWS ACCOUNT NAME>"
-  aws_account_id = "<MY DEV AWS ACCOUNT ID>"
-  env            = "dev"
+  account_name   = "<MY PROD AWS ACCOUNT NAME>"
+  aws_account_id = "<MY PROD AWS ACCOUNT ID>"
+  env            = "prod"
 }
